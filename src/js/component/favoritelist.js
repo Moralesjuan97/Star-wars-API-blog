@@ -3,6 +3,7 @@ import { Context } from "../store/appContext";
 import { Favorite } from "./favoriteitem";
 import { Dropdown } from "react-bootstrap";
 import { Button } from "react-bootstrap";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
 export const Favoritelist = () => {
 	const { store, actions } = useContext(Context);
@@ -25,7 +26,7 @@ export const Favoritelist = () => {
 			<Dropdown>
 				<Dropdown.Toggle variant="success" id="dropdown-basic">
 					Favorites
-					<span>{store.favorites.length}</span>
+					<span>({store.favorites.length})</span>
 				</Dropdown.Toggle>
 
 				<Dropdown.Menu>

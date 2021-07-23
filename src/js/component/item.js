@@ -3,6 +3,9 @@ import { Card } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { faHeartBroken } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import PropTypes from "prop-types";
 
@@ -18,6 +21,18 @@ export const Item = props => {
 			}
 		};
 
+		const heart = <FontAwesomeIcon icon={faHeart} />;
+		const heartbroken = <FontAwesomeIcon icon={faHeartBroken} />;
+		let icon = setIcon();
+
+		function setIcon() {
+			if (actions.isFavorite(property.name) === true) {
+				return heart;
+			} else {
+				return heartbroken;
+			}
+		}
+
 		return (
 			<div key={index}>
 				<Card style={{ width: "18rem" }} className="">
@@ -27,7 +42,9 @@ export const Item = props => {
 						<Link to={"/characterdetail/" + property.uid + "/"}>
 							<Button>Learn more</Button>
 						</Link>
-						<Button onClick={toggleFavorite}>Favorite</Button>
+						<Button onClick={toggleFavorite} style={{ margin: "5px" }}>
+							{icon}
+						</Button>
 					</Card.Body>
 				</Card>
 			</div>
