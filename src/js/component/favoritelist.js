@@ -14,9 +14,13 @@ export const Favoritelist = () => {
 		};
 
 		return (
-			<div key={index}>
-				<p>{favorite}</p>
-				<Button onClick={deleteFavorite}>X</Button>
+			<div key={index} className="container-fluid d-flex">
+				<div>
+					<p style={{ margin: "7px" }}>{favorite}</p>
+				</div>
+				<Button onClick={deleteFavorite} style={{ margin: "3px" }}>
+					X
+				</Button>
 			</div>
 		);
 	});

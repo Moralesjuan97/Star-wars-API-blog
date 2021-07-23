@@ -1,8 +1,11 @@
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import React, { useState, useEffect, useContext } from "react";
 import { Table } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const Character = props => {
 	const [character, setCharacter] = useState([]);
+	const [loading, setloading] = useState(true);
 
 	useEffect(() => {
 		fetch("https://www.swapi.tech/api/people/" + props.match.params.id)
@@ -11,11 +14,12 @@ export const Character = props => {
 				console.log(data.result.properties);
 				setCharacter(data.result.properties);
 			});
+		setloading(false);
 	}, []);
 
 	return (
 		<div>
-			<div>
+			<div className="container-fluid">
 				<Table striped bordered hover variant="dark">
 					<thead>
 						<tr>
@@ -29,12 +33,37 @@ export const Character = props => {
 					</thead>
 					<tbody>
 						<tr>
-							<td>{character.name}</td>
-							<td>{character.birth_year}</td>
-							<td>{character.gender}</td>
-							<td>{character.height}</td>
-							<td>{character.eye_color}</td>
-							<td>{character.hair_color}</td>
+							{loading ? (
+								<>
+									<td>
+										<FontAwesomeIcon icon={faSpinner} />{" "}
+									</td>
+									<td>
+										<FontAwesomeIcon icon={faSpinner} />{" "}
+									</td>
+									<td>
+										<FontAwesomeIcon icon={faSpinner} />{" "}
+									</td>
+									<td>
+										<FontAwesomeIcon icon={faSpinner} />{" "}
+									</td>
+									<td>
+										<FontAwesomeIcon icon={faSpinner} />{" "}
+									</td>
+									<td>
+										<FontAwesomeIcon icon={faSpinner} />{" "}
+									</td>
+								</>
+							) : (
+								<>
+									<td>{character.name}</td>
+									<td>{character.birth_year}</td>
+									<td>{character.gender}</td>
+									<td>{character.height}</td>
+									<td>{character.eye_color}</td>
+									<td>{character.hair_color}</td>
+								</>
+							)}
 						</tr>
 					</tbody>
 				</Table>

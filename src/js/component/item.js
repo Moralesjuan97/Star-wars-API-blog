@@ -34,7 +34,7 @@ export const Item = props => {
 		}
 
 		return (
-			<div key={index}>
+			<div key={index} className="container-fluid">
 				<Card style={{ width: "18rem" }} className="">
 					<Card.Img variant="top" src="holder.js/100px180" />
 					<Card.Body>

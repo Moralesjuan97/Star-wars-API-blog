@@ -2,6 +2,8 @@ import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
 import { Item } from "./item";
 import { Card } from "react-bootstrap";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const Character = () => {
 	const { store, actions } = useContext(Context);
