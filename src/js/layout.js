@@ -4,6 +4,7 @@ import ScrollToTop from "./component/scrollToTop";
 
 import { Home } from "./views/home";
 import { Demo } from "./views/demo";
+import { Character } from "./views/characterdetail";
 import { Single } from "./views/single";
 import injectContext from "./store/appContext";
 
@@ -25,9 +26,7 @@ const Layout = () => {
 						<Route exact path="/">
 							<Home />
 						</Route>
-						<Route exact path="/demo">
-							<Demo />
-						</Route>
+						<Route exact path="/characterdetail/:id" component={Character} />
 						<Route exact path="/single/:theid">
 							<Single />
 						</Route>
