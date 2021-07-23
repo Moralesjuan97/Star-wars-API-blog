@@ -3,7 +3,8 @@ import { Character } from "../component/character";
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			characters: []
+			characters: [],
+			favorites: []
 		},
 		actions: {
 			getCharacters: async () => {
@@ -11,6 +12,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 				let data = await response.json();
 				setStore({ characters: data });
 				//console.log(data.results);
+			},
+			addFavorite: name => {
+				setStore({ favorites: [...getStore().favorites, name] });
+			},
+			deleteFavorite: name => {
+				const newFavorites = getStore().favorites.filter(item => {
+					return item != name;
+				});
+				setStore({ favorites: newFavorites });
+			},
+			isFavorite: name => {
+				if (getStore().favorites) {
+					return getStore().favorites.includes(name);
+				} else {
+					return false;
+				}
 			}
 		}
 	};
