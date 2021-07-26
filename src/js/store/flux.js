@@ -13,7 +13,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				let response = await fetch("https://www.swapi.tech/api/people/");
 				let data = await response.json();
 				setStore({ characters: data });
-				//console.log(data.results);
+				console.log(data);
 			},
 			getPlanets: async () => {
 				let response = await fetch("https://www.swapi.tech/api/planets/");

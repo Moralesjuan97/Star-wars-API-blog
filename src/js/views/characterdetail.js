@@ -9,9 +9,7 @@ export const Character = props => {
 
 	useEffect(() => {
 		getList();
-		setTimeout(function() {
-			setloading(false);
-		}, 1500);
+
 		//setloading(false);
 	}, []);
 
@@ -21,6 +19,7 @@ export const Character = props => {
 			.then(data => {
 				console.log(data.result.properties);
 				setCharacter(data.result.properties);
+				setloading(false);
 			});
 	};
 

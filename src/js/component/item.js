@@ -15,9 +15,7 @@ export const Item = props => {
 	const [loading, setloading] = useState(true);
 
 	useEffect(() => {
-		setTimeout(function() {
-			setloading(false);
-		}, 1500);
+		setloading(false);
 	}, []);
 
 	const charProperties = props.properties.map((property, index) => {
@@ -56,7 +54,7 @@ export const Item = props => {
 								<Link to={"/" + props.url + "/" + property.uid + "/"}>
 									<Button>Learn more</Button>
 								</Link>
-								<Button onClick={toggleFavorite} style={{ margin: "5px" }}>
+								<Button onClick={toggleFavorite} style={{ margin: "5px", color: "red" }}>
 									{icon}
 								</Button>
 							</Card.Body>

@@ -9,10 +9,6 @@ export const Vehicle = props => {
 
 	useEffect(() => {
 		getList();
-		setTimeout(function() {
-			setloading(false);
-		}, 1500);
-		//setloading(false);
 	}, []);
 
 	const getList = () => {
@@ -21,6 +17,7 @@ export const Vehicle = props => {
 			.then(data => {
 				console.log(data.result.properties);
 				setvehicle(data.result.properties);
+				setloading(false);
 			});
 	};
 

@@ -9,9 +9,7 @@ export const Planet = props => {
 
 	useEffect(() => {
 		getList();
-		setTimeout(function() {
-			setloading(false);
-		}, 1500);
+
 		//setloading(false);
 	}, []);
 
@@ -21,6 +19,7 @@ export const Planet = props => {
 			.then(data => {
 				console.log(data.result.properties);
 				setplanet(data.result.properties);
+				setloading(false);
 			});
 	};
 

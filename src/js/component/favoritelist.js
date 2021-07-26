@@ -30,7 +30,7 @@ export const Favoritelist = () => {
 			<Dropdown>
 				<Dropdown.Toggle variant="success" id="dropdown-basic">
 					Favorites
-					<span>({store.favorites.length})</span>
+					<span style={{ margin: "2px" }}>({store.favorites.length})</span>
 				</Dropdown.Toggle>
 
 				<Dropdown.Menu>
