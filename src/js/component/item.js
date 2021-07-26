@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Card } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -6,11 +6,19 @@ import { Context } from "../store/appContext";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { faHeartBroken } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
 import PropTypes from "prop-types";
 
 export const Item = props => {
 	const { store, actions } = useContext(Context);
+	const [loading, setloading] = useState(true);
+
+	useEffect(() => {
+		setTimeout(function() {
+			setloading(false);
+		}, 1500);
+	}, []);
 
 	const charProperties = props.properties.map((property, index) => {
 		const toggleFavorite = () => {
@@ -34,19 +42,27 @@ export const Item = props => {
 		}
 
 		return (
-			<div key={index} className="container-fluid">
-				<Card style={{ width: "18rem" }} className="">
-					<Card.Img variant="top" src="holder.js/100px180" />
-					<Card.Body>
-						<Card.Title>{property.name}</Card.Title>
-						<Link to={"/characterdetail/" + property.uid + "/"}>
-							<Button>Learn more</Button>
-						</Link>
-						<Button onClick={toggleFavorite} style={{ margin: "5px" }}>
-							{icon}
-						</Button>
-					</Card.Body>
-				</Card>
+			<div key={index}>
+				{loading ? (
+					<h2>
+						<FontAwesomeIcon icon={faSpinner} style={{ margin: "20px" }} />
+					</h2>
+				) : (
+					<div className="container-fluid">
+						<Card style={{ width: "18rem" }} className="">
+							<Card.Img variant="top" src="holder.js/100px180" />
+							<Card.Body>
+								<Card.Title>{property.name}</Card.Title>
+								<Link to={"/" + props.url + "/" + property.uid + "/"}>
+									<Button>Learn more</Button>
+								</Link>
+								<Button onClick={toggleFavorite} style={{ margin: "5px" }}>
+									{icon}
+								</Button>
+							</Card.Body>
+						</Card>
+					</div>
+				)}
 			</div>
 		);
 	});
@@ -60,5 +76,6 @@ export const Item = props => {
 
 Item.propTypes = {
 	properties: PropTypes.array,
-	typeName: PropTypes.string
+	typeName: PropTypes.string,
+	url: PropTypes.string
 };

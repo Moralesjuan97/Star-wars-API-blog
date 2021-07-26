@@ -3,8 +3,8 @@ import React, { useState, useEffect, useContext } from "react";
 import { Table } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export const Character = props => {
-	const [character, setCharacter] = useState([]);
+export const Planet = props => {
+	const [planet, setplanet] = useState([]);
 	const [loading, setloading] = useState(true);
 
 	useEffect(() => {
@@ -16,11 +16,11 @@ export const Character = props => {
 	}, []);
 
 	const getList = () => {
-		fetch("https://www.swapi.tech/api/people/" + props.match.params.id)
+		fetch("https://www.swapi.tech/api/planets/" + props.match.params.id)
 			.then(res => res.json())
 			.then(data => {
 				console.log(data.result.properties);
-				setCharacter(data.result.properties);
+				setplanet(data.result.properties);
 			});
 	};
 
@@ -30,12 +30,12 @@ export const Character = props => {
 				<Table striped bordered hover variant="dark">
 					<thead>
 						<tr>
-							<th>Name</th>
-							<th>Birth year</th>
-							<th>Gender</th>
-							<th>Height</th>
-							<th>Eye Color</th>
-							<th>Hair Color</th>
+							<th>Diameter</th>
+							<th>Rotation period</th>
+							<th>Population</th>
+							<th>Gravity</th>
+							<th>Orbital period</th>
+							<th>Surface water</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -63,12 +63,12 @@ export const Character = props => {
 								</>
 							) : (
 								<>
-									<td>{character.name}</td>
-									<td>{character.birth_year}</td>
-									<td>{character.gender}</td>
-									<td>{character.height}</td>
-									<td>{character.eye_color}</td>
-									<td>{character.hair_color}</td>
+									<td>{planet.diameter}</td>
+									<td>{planet.rotation_period}</td>
+									<td>{planet.population}</td>
+									<td>{planet.gravity}</td>
+									<td>{planet.orbital_period}</td>
+									<td>{planet.surface_water}</td>
 								</>
 							)}
 						</tr>

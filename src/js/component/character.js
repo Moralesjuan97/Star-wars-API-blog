@@ -44,7 +44,7 @@ export const Character = () => {
 		//aqui va el scroll horizontal
 		//
 		<div>
-			<Item properties={characters} typeName={"Characters"} />
+			<Item properties={characters} typeName={"Characters"} url={"characterdetail"} />
 		</div>
 	);
 };
